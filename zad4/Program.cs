@@ -52,7 +52,13 @@ void Minimum(double[] array, int size)
 
 double Average(double[] collection, int size)
 {
-    double avr = collection.Average();
+    double sum = 0;
+    for (int i = 0; i < collection.Length; i++)
+    {
+        sum += collection[i];
+    }
+
+    double avr = sum / size; // collection.Average();
     Console.WriteLine($"Среднее число = {avr}");
     return avr;
 }
