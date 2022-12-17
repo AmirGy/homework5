@@ -1,35 +1,41 @@
 ﻿// Задайте массив вещественных чисел. Найдите разницу между максимальным и минимальным элементов массива.
 
-int[] CreateArray(int size)
+double[] CreateArray(int size)
 {
-    int[] array = new int[size];
+    double[] array = new double[size];
     for (int i = 0; i < size; i++)
-        array[i] = new Random().Next(-10, 11);
+        array[i] = new Random().NextDouble()*100;
     return array;
 }
 
-void PrintArray(int[] nums)
+void PrintArray(double[] nums)
 {
-    foreach (int item in nums)
-        Console.Write($"{item} ");
+    foreach (double item in nums)
+    {
+        double round = Math.Round(item, 2);
+        Console.Write($"{round}  ");
+    }
     Console.WriteLine();
 }
 
-void NumberDifference(int[] array)
+void NumberDifference(double[] array)
 {
     double max = 0;
-    double min = 0;
+    double min = 100;
     foreach (double item in array)
     {
         if (item > max) max = item;
         else if (item < min) min = item;
     }
     double difference = max - min;
-    Console.Write($"Разница между max и min = {difference}");
+    double round = Math.Round(difference, 2);
+    double roundMax = Math.Round(max, 2);
+    double roundMin = Math.Round(min, 2);
+    Console.Write($"Разница между max: {roundMax} и min: {roundMin} = {round}");
 }
 
 Console.Write("Введите размер массива: ");
 int size = Convert.ToInt32(Console.ReadLine());
-int[] array = CreateArray(size);
+double[] array = CreateArray(size);
 PrintArray(array);
 NumberDifference(array);
